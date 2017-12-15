@@ -1,8 +1,12 @@
 #!/bin/bash
 rolename="cdemo-ec2-inst-profile"
 policyname="cdemo-ec2-inst-perm"
+
 aws iam create-role --role-name $rolename --assume-role-policy-document file://cdemo-ec2-trust.json
 aws iam put-role-policy --role-name $rolename --policy-name $policyname --policy-document file://cdemo-ec2-perm.json
 
 aws iam create-instance-profile --instance-profile-name $rolename
 aws iam add-role-to-instance-profile --instance-profile-name cdemo-ec2-inst-profile --role-name $rolename
+
+aws ec2 associate-iam-instance-profile --instance-id i-xxxxx --iam-instance-profile Name=\"$rolename\"
+aws ec2 associate-iam-instance-profile --instance-id i-xxxxx --iam-instance-profile Name=\"$rolename\"
