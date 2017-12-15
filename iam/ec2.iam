@@ -1,0 +1,5 @@
+#!/bin/bash
+rolename="cdemo-ec2-inst-profile"
+policyname="cdemo-ec2-inst-perm"
+aws iam create-role --role-name $rolename --assume-role-policy-document file://cdemo-ec2-trust.json
+aws iam put-role-policy --role-name $rolename --policy-name $policyname --policy-document file://cdemo-ec2-perm.json
